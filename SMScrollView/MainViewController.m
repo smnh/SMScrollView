@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"word-map@2x.png"]];
+    self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"word-map.png"]];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
 

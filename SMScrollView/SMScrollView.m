@@ -34,6 +34,11 @@
     return self;
 }
 
+- (void)setContentSize:(CGSize)contentSize {
+    [super setContentSize:contentSize];
+    [self _centerScrollViewContent];
+}
+
 - (void)scaleToFit {
     if (![self.delegate respondsToSelector:@selector(viewForZoomingInScrollView:)]) return;
     [self _setMinimumZoomScaleToFit];
@@ -165,10 +170,6 @@
             // When user double-taps on the scrollView while it is zoomed out, zoom-in
             CGFloat newScale = self.maximumZoomScale;
             CGPoint centerPoint = [gestureRecognizer locationInView:zoomView];
-
-            // Adjust center point due to auto centering of the content view.
-            centerPoint.x -= zoomView.frame.origin.x / newScale;
-            centerPoint.y -= zoomView.frame.origin.y / newScale;
             CGRect zoomRect = [self _zoomRectInView:self forScale:newScale withCenter:centerPoint];
             [self zoomToRect:zoomRect animated:YES];
         } else {
@@ -178,15 +179,15 @@
     }
 }
 
-- (CGRect)_zoomRectInView:(UIScrollView *)scrollView forScale:(CGFloat)scale withCenter:(CGPoint)center {
+- (CGRect)_zoomRectInView:(UIView *)view forScale:(CGFloat)scale withCenter:(CGPoint)center {
 
     CGRect zoomRect;
 
     // The zoom rect is in the content view's coordinates.
     // At a zoom scale of 1.0, it would be the size of the scrollView's bounds.
     // As the zoom scale decreases, so more content is visible, the size of the rect grows.
-    zoomRect.size.height = scrollView.bounds.size.height / scale;
-    zoomRect.size.width = scrollView.bounds.size.width / scale;
+    zoomRect.size.height = view.bounds.size.height / scale;
+    zoomRect.size.width = view.bounds.size.width / scale;
 
     // choose an origin so as to get the right center.
     zoomRect.origin.x = center.x - (zoomRect.size.width / 2.0);
