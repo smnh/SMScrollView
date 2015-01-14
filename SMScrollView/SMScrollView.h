@@ -10,7 +10,7 @@
 
 @interface SMScrollView : UIScrollView
 
-@property (nonatomic, assign) BOOL downscaleToFitOnSizeChange;
+@property (nonatomic, assign) BOOL fitOnSizeChange;
 @property (nonatomic, assign) BOOL upscaleToFitOnSizeChange;
 @property (nonatomic, assign) BOOL stickToBounds;
 @property (nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapGestureRecognizer;

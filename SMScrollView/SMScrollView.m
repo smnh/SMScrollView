@@ -22,7 +22,7 @@
         // Set the prevBoundsSize to the initial bounds, so the first time layoutSubviews
         // is called we won't do any contentOffset adjustments
         self.prevBoundsSize = self.bounds.size;
-        self.downscaleToFitOnSizeChange = NO;
+        self.fitOnSizeChange = NO;
         self.upscaleToFitOnSizeChange = YES;
         self.stickToBounds = NO;
 
@@ -54,7 +54,7 @@
     [super layoutSubviews];
 
     if (!CGSizeEqualToSize(self.prevBoundsSize, self.bounds.size)) {
-        if (self.downscaleToFitOnSizeChange) {
+        if (self.fitOnSizeChange) {
             [self scaleToFit];
         } else {
             [self _adjustContentOffset];
