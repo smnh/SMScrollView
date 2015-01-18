@@ -13,8 +13,11 @@
 @property (nonatomic, assign) BOOL fitOnSizeChange;
 @property (nonatomic, assign) BOOL upscaleToFitOnSizeChange;
 @property (nonatomic, assign) BOOL stickToBounds;
+@property (nonatomic, assign) BOOL centerZoomingView;
+@property (nonatomic, strong, readonly) UIView *viewForZooming;
 @property (nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapGestureRecognizer;
 
 - (void)scaleToFit;
+- (void)addViewForZooming:(UIView *)view;
 
 @end

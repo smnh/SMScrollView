@@ -11,7 +11,6 @@
 
 @interface MainViewController ()
 @property (nonatomic, strong) SMScrollView *myScrollView;
-@property (nonatomic, strong) UIImageView *imageView;
 @end
 
 @implementation MainViewController
@@ -27,20 +26,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"word-map.png"]];
-    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.imageView.clipsToBounds = YES;
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"word-map.png"]];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
 
     self.myScrollView = [[SMScrollView alloc] initWithFrame:self.view.bounds];
     self.myScrollView.maximumZoomScale = 2;
     self.myScrollView.delegate = self;
     self.myScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.myScrollView.contentSize = self.imageView.frame.size;
+    self.myScrollView.contentSize = imageView.frame.size;
     self.myScrollView.alwaysBounceVertical = YES;
     self.myScrollView.alwaysBounceHorizontal = YES;
     self.myScrollView.stickToBounds = YES;
+    [self.myScrollView addViewForZooming:imageView];
     [self.myScrollView scaleToFit];
-    [self.myScrollView addSubview:self.imageView];
     [self.view addSubview:self.myScrollView];
 
     UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(roundf(self.view.bounds.size.width / 2), 0.0, 1.0, self.view.bounds.size.height)];
@@ -55,7 +54,7 @@
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return self.imageView;
+    return self.myScrollView.viewForZooming;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {

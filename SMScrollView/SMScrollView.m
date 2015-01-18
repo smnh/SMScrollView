@@ -11,6 +11,7 @@
 @interface SMScrollView ()
 @property (nonatomic, assign) CGSize prevBoundsSize;
 @property (nonatomic, assign) CGPoint prevContentOffset;
+@property (nonatomic, strong, readwrite) UIView *viewForZooming;
 @property (nonatomic, strong, readwrite) UITapGestureRecognizer *doubleTapGestureRecognizer;
 @end
 
@@ -22,9 +23,11 @@
         // Set the prevBoundsSize to the initial bounds, so the first time layoutSubviews
         // is called we won't do any contentOffset adjustments
         self.prevBoundsSize = self.bounds.size;
+        self.prevContentOffset = self.contentOffset;
         self.fitOnSizeChange = NO;
         self.upscaleToFitOnSizeChange = YES;
         self.stickToBounds = NO;
+        self.centerZoomingView = YES;
 
         // Add double-tap-gesture-recognizer to zoom in and out when user double taps.
         self.doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_doubleTapped:)];
@@ -39,15 +42,24 @@
     [self _centerScrollViewContent];
 }
 
+- (void)setZoomScale:(CGFloat)zoomScale {
+    [super setZoomScale:zoomScale];
+    // On iPhone 6+ iOS8, after setting zoomScale content, the contentSize becomes slightly bigger than bounds (e.g. 0.00001)
+    self.contentSize = CGSizeMake(floorf(self.contentSize.width), floorf(self.contentSize.height));
+}
+
 - (void)scaleToFit {
     if (![self.delegate respondsToSelector:@selector(viewForZoomingInScrollView:)]) return;
     [self _setMinimumZoomScaleToFit];
     self.zoomScale = self.minimumZoomScale;
 }
 
-- (void)setContentOffset:(CGPoint)contentOffset {
-    self.prevContentOffset = self.contentOffset;
-    [super setContentOffset:contentOffset];
+- (void)addViewForZooming:(UIView *)view {
+    if (self.viewForZooming) {
+        [self.viewForZooming removeFromSuperview];
+    }
+    self.viewForZooming = view;
+    [self addSubview:self.viewForZooming];
 }
 
 - (void)layoutSubviews {
@@ -61,12 +73,13 @@
         }
         self.prevBoundsSize = self.bounds.size;
     }
-
+    self.prevContentOffset = self.contentOffset;
+    
     [self _centerScrollViewContent];
 }
 
 - (void)_centerScrollViewContent {
-    if ([self.delegate respondsToSelector:@selector(viewForZoomingInScrollView:)]) {
+    if (self.centerZoomingView && [self.delegate respondsToSelector:@selector(viewForZoomingInScrollView:)]) {
         UIView *zoomView = [self.delegate viewForZoomingInScrollView:self];
 
         CGRect frame = zoomView.frame;
