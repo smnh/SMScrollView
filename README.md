@@ -10,6 +10,6 @@ SMScrollView
 - When its size is changed, for example due to a change in an interface orientation, then:
   1. If its `fitOnSizeChange == YES`, then its content is rescaled to fit its new size, up to the scale of 1.0, such that content is never stretched.
   ![fit-on-size-change](https://cloud.githubusercontent.com/assets/97896/5738193/2929067e-9bf2-11e4-895e-1f7c4798f64b.png)
-  2. If `fitOnSizeChange == NO`, then the content point that was displayed in the center of its bounds before the size change, is kept in center after the size change. However, if before the size change, the scroll-view was scrolled to one of its boundaries, then it is kept at these boundaries instead of keeping the center point in center. To keep the center point in center even in this case set the `stickToBounds` property to `NO`.
+  2. If `fitOnSizeChange == NO`, then the content point that was displayed in the center of its bounds before the size change, is kept in center after the size change. However, if `stickToBounds` property was set to `YES` and the scroll-view was scrolled to one of its boundaries before the size change, then it is kept at these boundaries instead of keeping the center point in center.
   ![maintain-center-point](https://cloud.githubusercontent.com/assets/97896/5738195/292994cc-9bf2-11e4-9e82-6509be403bdb.png)
 
