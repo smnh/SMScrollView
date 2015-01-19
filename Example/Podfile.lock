@@ -1,0 +1,14 @@
+PODS:
+  - SMScrollView (0.1.0)
+
+DEPENDENCIES:
+  - SMScrollView (from `../`)
+
+EXTERNAL SOURCES:
+  SMScrollView:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SMScrollView: 1e3bb4152a01c2668266b7239b09757c08578a34
+
+COCOAPODS: 0.35.0

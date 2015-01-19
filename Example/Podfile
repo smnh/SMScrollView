@@ -1,0 +1,5 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'SMScrollView', :exclusive => true do
+  pod "SMScrollView", :path => "../"
+end

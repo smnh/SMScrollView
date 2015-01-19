@@ -7,7 +7,7 @@
 //
 
 #import "SMAppDelegate.h"
-#import "MainViewController.h"
+#import "SMViewController.h"
 
 @implementation SMAppDelegate
 
@@ -17,7 +17,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    MainViewController *mainViewController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
+    SMViewController *mainViewController = [[SMViewController alloc] initWithNibName:nil bundle:nil];
     self.window.rootViewController = mainViewController;
     
     [self.window makeKeyAndVisible];

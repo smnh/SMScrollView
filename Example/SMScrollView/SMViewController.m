@@ -1,19 +1,19 @@
 //
-//  MainViewController.m
+//  SMViewController.m
 //  CustomScrollView
 //
 //  Created by smnh on 3/29/14.
 //  Copyright (c) 2014 smnh. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "SMViewController.h"
 #import "SMScrollView.h"
 
-@interface MainViewController ()
+@interface SMViewController ()
 @property (nonatomic, strong) SMScrollView *myScrollView;
 @end
 
-@implementation MainViewController
+@implementation SMViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
