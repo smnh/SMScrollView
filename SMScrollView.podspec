@@ -10,7 +10,7 @@
 Pod::Spec.new do |s|
   s.name             = "SMScrollView"
   s.version          = "0.1.0"
-  s.summary          = "SMScrollView is a subclass of UIScrollView with extended functionality"
+  s.summary          = "SMScrollView is a UIScrollView subclass with extended functionality such as centering zoomed view, double-tap to zoom, scale to fit and more"
   s.description      = <<-DESC
                         - SMScrollView maintains the position of its zooming view returned by its `delegate`'s `viewForZoomingInScrollView:` in the center of its own boundaries.
                         ![center-zooming-view](https://cloud.githubusercontent.com/assets/97896/5738192/29249ba2-9bf2-11e4-81ea-c7ed2ea58833.png)
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
                           ![fit-on-size-change](https://cloud.githubusercontent.com/assets/97896/5738193/2929067e-9bf2-11e4-895e-1f7c4798f64b.png)
                           2. If `fitOnSizeChange == NO`, then the content point that was displayed in the center of its bounds before the size change, is kept in center after the size change. However, if `stickToBounds` property was set to `YES` and the scroll-view was scrolled to one of its boundaries before the size change, then it is kept at these boundaries instead of keeping the center point in center.
                           ![maintain-center-point](https://cloud.githubusercontent.com/assets/97896/5738195/292994cc-9bf2-11e4-9e82-6509be403bdb.png)
-                        DESC
+                      DESC
   s.homepage         = "https://github.com/smnh/SMScrollView"
   s.screenshots      = ["https://cloud.githubusercontent.com/assets/97896/5738192/29249ba2-9bf2-11e4-81ea-c7ed2ea58833.png", "https://cloud.githubusercontent.com/assets/97896/5738194/2929502a-9bf2-11e4-86a4-06367f28befd.png", "https://cloud.githubusercontent.com/assets/97896/5738193/2929067e-9bf2-11e4-895e-1f7c4798f64b.png", "https://cloud.githubusercontent.com/assets/97896/5738195/292994cc-9bf2-11e4-9e82-6509be403bdb.png"]
   s.license          = 'MIT'

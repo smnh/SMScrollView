@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/cocoapods/l/SMScrollView.svg?style=flat)](http://cocoadocs.org/docsets/SMScrollView)
 [![Platform](https://img.shields.io/cocoapods/p/SMScrollView.svg?style=flat)](http://cocoadocs.org/docsets/SMScrollView)
 
-`SMScrollView` is a subclass of `UIScrollView` with extended functionality
+`SMScrollView` is a subclass of `UIScrollView` with extended functionality such as centering zoomed view, double-tap to zoom, scale to fit and more. 
 
 ## Installation
 
