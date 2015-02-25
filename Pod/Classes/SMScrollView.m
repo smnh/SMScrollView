@@ -20,21 +20,33 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        // Set the prevBoundsSize to the initial bounds, so the first time layoutSubviews
-        // is called we won't do any contentOffset adjustments
-        self.prevBoundsSize = self.bounds.size;
-        self.prevContentOffset = self.contentOffset;
-        self.fitOnSizeChange = NO;
-        self.upscaleToFitOnSizeChange = YES;
-        self.stickToBounds = NO;
-        self.centerZoomingView = YES;
-
-        // Add double-tap-gesture-recognizer to zoom in and out when user double taps.
-        self.doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_doubleTapped:)];
-        self.doubleTapGestureRecognizer.numberOfTapsRequired = 2;
-        [self addGestureRecognizer:self.doubleTapGestureRecognizer];
+        [self performInitialisation];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self performInitialisation];
+    }
+    return self;
+}
+
+- (void)performInitialisation {
+    // Set the prevBoundsSize to the initial bounds, so the first time layoutSubviews
+    // is called we won't do any contentOffset adjustments
+    self.prevBoundsSize = self.bounds.size;
+    self.prevContentOffset = self.contentOffset;
+    self.fitOnSizeChange = NO;
+    self.upscaleToFitOnSizeChange = YES;
+    self.stickToBounds = NO;
+    self.centerZoomingView = YES;
+    
+    // Add double-tap-gesture-recognizer to zoom in and out when user double taps.
+    self.doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_doubleTapped:)];
+    self.doubleTapGestureRecognizer.numberOfTapsRequired = 2;
+    [self addGestureRecognizer:self.doubleTapGestureRecognizer];
 }
 
 - (void)setContentSize:(CGSize)contentSize {
